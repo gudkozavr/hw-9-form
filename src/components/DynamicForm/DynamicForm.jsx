@@ -32,6 +32,7 @@ export default function DynamicForm() {
           "Поле не должно состоять из пробелов и должно быть не менее 5 символов"
         );
         setIsSuccess(false);
+
         return;
       }
     }
@@ -40,9 +41,12 @@ export default function DynamicForm() {
     setIsSubmitted(true);
     setFinishSubmitted(false);
     setIsSuccess(true);
+    setValue("firstElement", "");
+    setValue("nextElement", "");
   }
   function handleChangeValueFirstInput(e) {
     const value = e.target.value.trim();
+
     setValue("firstElement", value);
     if (e.target.value.trim() && e.target.value.length >= 5) {
       setIsSubmitted(true);
@@ -56,6 +60,7 @@ export default function DynamicForm() {
   }
   function handleChangeNextValueInput(e) {
     const value = e.target.value.trim();
+
     setValue("nextElement", value);
 
     if (e.target.value.trim() && e.target.value.length >= 5) {
@@ -92,6 +97,7 @@ export default function DynamicForm() {
         </label>
         {isSubmitted && (
           <label>
+            Следующий элемент:
             <input
               {...register("nextElement", {
                 onChange: handleChangeNextValueInput,
